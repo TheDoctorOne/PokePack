@@ -1,0 +1,20 @@
+Alive-Mod/.gradle
+Alive-Mod/.idea
+Alive-Mod/build
+Alive-Mod/eclipse
+Alive-Mod/gradle
+Alive-Mod/run
+Alive-Mod/.gitignore
+Alive-Mod/src/main/java/me/mahmutkocas/amialive/References.java
+
+PokePackClient/.vs
+PokePackClient/PokePackClient/bin
+PokePackClient/PokePackClient/Connected Services
+PokePackClient/PokePackClient/obj
+PokePackClient/PokePackClient/References.cs
+PokePackClient/PokePackClient/TrickHandler.cs
+
+ServerSideLauncher/.vs
+ServerSideLauncher/ServerSideLauncher
+ServerSideLauncher/ServerSideLauncher/bin
+ServerSideLauncher/ServerSideLauncher/obj

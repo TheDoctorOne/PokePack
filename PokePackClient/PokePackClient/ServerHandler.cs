@@ -32,7 +32,7 @@ namespace PokePackClient
             this.status = status;
             if (server_pending)
                 serverStat.Text = "Checking Server Status";
-            server_online = isServerAvailable(url, port);
+            server_online = isServerAvailable(References.url, port);
             if (server_online)
             {
                 serverStat.Text = "SERVER ONLINE!";
@@ -138,27 +138,31 @@ namespace PokePackClient
                     if (File.Exists(path + dfile))
                         File.Delete(path + dfile);
                 }
-
-                //download(jrefiles, appdata, forceJava);
-                /*foreach (String zip in jrefiles.Split('\n')) {
-                    String file = zip.Replace(".zip","");
-                    file = file.Replace("\r","");
-                    if(Environment.Is64BitOperatingSystem)
-                        if (file.Contains("32"))
+                if (forceJava)
+                {
+                    download(jrefiles, appdata, forceJava);
+                    foreach (String zip in jrefiles.Split('\n'))
+                    {
+                        String file = zip.Replace(".zip", "");
+                        file = file.Replace("\r", "");
+                        if (Environment.Is64BitOperatingSystem)
+                            if (file.Contains("32"))
+                                continue;
+                        if (Directory.Exists(appdata + file) && !forceJava)
                             continue;
-                    if (Directory.Exists(appdata + file) && !forceJava)
-                        continue;
-                    updateStatus("Unzipping Java");
-                    try
-                    {
-                        ZipFile.ExtractToDirectory(appdata + (zip.Replace("\r", "")), appdata);
-                    } catch(Exception)
-                    {
-                        MessageBox.Show("DELETE THE "+file+" FOLDER!", "CRITICAL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        MessageBox.Show("-> "+file+" ADLI KLASÖRÜ SİL! TEKRAR DENE! Klasörü açılan yerden sil.", "CRITICAL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        OpenFolder(appdata);
+                        updateStatus("Unzipping Java");
+                        try
+                        {
+                            ZipFile.ExtractToDirectory(appdata + (zip.Replace("\r", "")), appdata);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("DELETE THE " + file + " FOLDER!", "CRITICAL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("-> " + file + " ADLI KLASÖRÜ SİL! TEKRAR DENE! Klasörü açılan yerden sil.", "CRITICAL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            OpenFolder(appdata);
+                        }
                     }
-                }*/
+                }
 
                 download(files, path, forceDownPack);
 
@@ -190,7 +194,7 @@ namespace PokePackClient
                 {
                     updateStatus("Checking " + filename);
                     long exist = new FileInfo(path + dfile).Length;
-                    long remote = GetFileSize(files_data_url + dfile);
+                    long remote = GetFileSize(References.files_data_url + dfile);
                     if (exist == remote && !force)
                     {
                         updateStatus("Checked " + filename);
@@ -231,7 +235,7 @@ namespace PokePackClient
             try
             {
                 //tcpClient = new TcpClient("play.mahmutkocas.me", 2999);
-                tcpClient = new TcpClient("193.31.118.173", 2999);
+                tcpClient = new TcpClient(References.IPAdress, 2999);
                 byte[] user = Encoding.ASCII.GetBytes(username + ";");
                 byte[] ipAdd = Encoding.ASCII.GetBytes(GetIPAddress() + ";");
                 byte[] pass = Encoding.ASCII.GetBytes(pwd);

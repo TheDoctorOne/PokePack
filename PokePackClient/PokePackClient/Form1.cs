@@ -72,6 +72,7 @@ namespace PokePackClient
             if (latest_ver > References.VERSION)
             {
                 MessageBox.Show("Your client is old. Update to newest version!", "Old Client", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Process.Start("http://play.mahmutkocas.me/#download");
                 Application.Exit();
             }
             else
@@ -275,12 +276,12 @@ namespace PokePackClient
             String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             this.game = new Process();
             ProcessStartInfo info = null;
-            //if(Environment.Is64BitOperatingSystem)
-                //info = new ProcessStartInfo(appdata + "/jre64/bin/javaw.exe", References.RUN_ARGS(ram, username));
-            /*else
-                info = new ProcessStartInfo(appdata + "/jre32/bin/javaw.exe", References.RUN_ARGS(ram, username));*/
-            String args = References.RUN_ARGS(ram, username);
-            Debug.WriteLine(args);
+            if(forceDownloadJava.Checked)
+                if(Environment.Is64BitOperatingSystem)
+                    info = new ProcessStartInfo(appdata + "/jre64/bin/javaw.exe", References.RUN_ARGS(ram, username));
+                else
+                    info = new ProcessStartInfo(appdata + "/jre32/bin/javaw.exe", References.RUN_ARGS(ram, username));
+
             if (consoleWanted.Checked)
                 info = new ProcessStartInfo("java", References.RUN_ARGS(ram, username));
             else
@@ -299,7 +300,7 @@ namespace PokePackClient
                     UdpClient udpClient = new UdpClient("127.0.0.1", References.localPort);
                     if (game.HasExited)
                     {
-                        MessageBox.Show("Minecraft closed!");
+                        //MessageBox.Show("Minecraft closed!");
                         Environment.Exit(1);
                         Debug.WriteLine("Visible");
                         setEnableLoginBox(true);
@@ -369,6 +370,14 @@ namespace PokePackClient
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void forceDownloadJava_CheckedChanged(object sender, EventArgs e)
+        {
+            if (forceDownloadJava.Checked)
+            {
+                MessageBox.Show("Eğer oyununuz çalışıyorsa bunu işaretlemeyin!", "Dikkat!");
+            }
         }
     }
 }

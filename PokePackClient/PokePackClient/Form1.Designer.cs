@@ -138,7 +138,7 @@
             this.forceDownloadJava.TabIndex = 11;
             this.forceDownloadJava.Text = "Force Download Java";
             this.forceDownloadJava.UseVisualStyleBackColor = true;
-            this.forceDownloadJava.Visible = false;
+            this.forceDownloadJava.CheckedChanged += new System.EventHandler(this.forceDownloadJava_CheckedChanged);
             // 
             // forceUpdateBox
             // 
@@ -180,7 +180,7 @@
             this.groupBox2.Controls.Add(this.ramLabel);
             this.groupBox2.Controls.Add(this.trackBar1);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox2.Location = new System.Drawing.Point(547, 250);
+            this.groupBox2.Location = new System.Drawing.Point(547, 204);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(195, 95);
             this.groupBox2.TabIndex = 5;
@@ -201,7 +201,7 @@
             this.serverLabel.AutoSize = true;
             this.serverLabel.BackColor = System.Drawing.Color.Transparent;
             this.serverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.serverLabel.Location = new System.Drawing.Point(593, 357);
+            this.serverLabel.Location = new System.Drawing.Point(584, 302);
             this.serverLabel.Name = "serverLabel";
             this.serverLabel.Size = new System.Drawing.Size(114, 16);
             this.serverLabel.TabIndex = 7;

@@ -35,7 +35,7 @@ namespace LauncherServer
                 File.Create(USER_CONNECTED);
             Console.WriteLine("Listener Init");
 
-            this.tcpListener = new TcpListener(IPAddress.Parse("193.31.118.173"), 2999);
+            this.tcpListener = new TcpListener(IPAddress.Parse("185.254.29.188"), 2999);
             tcpListener.Start();
 
             Console.WriteLine("Listening... Port 2999");
